@@ -15,7 +15,7 @@ $agenciesQuery = "select * from motd where appType = 'agency' and featured = 1 o
 $seq = 0;
 if ($queryResults = $mysqli->query($agenciesQuery)) {
 	$seq = $seq + 1;
-	echo "<h2>".mysqli_num_rows($queryResults)." Doap agencies</h2>";
+	echo "<h2>".mysqli_num_rows($queryResults)." active agencies</h2>";
 	echo "<ol>";
                 while($row = mysqli_fetch_array($queryResults)) {
 			//echo $row['AgencyUserId']."\n";
