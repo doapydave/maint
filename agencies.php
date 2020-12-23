@@ -20,42 +20,36 @@ if (isset($_GET['runon'])) {
 <?php
 
 if (isset($_SESSION['dbp']) && $_SESSION['dbp'] == $dbp OR ($_POST['pass'] == $dbp)) {
-	echo "<div class=authenticated><a title=Logout class=cleanlinks href=?logout=yes>Authenticated</a></div>";
+	echo "<div class=\"authenticated bigger\"><a title=Logout class=\"marvel cleanlinks bigger\" href=?logout=yes>Authenticated</a></div>";
 }
 if (isset($_POST['pass']) && $_POST['pass'] == $dbp OR isset($_SESSION['dbp'])) {
-	//echo "<p>SESSION dbp: ".$_SESSION['dbp']."</p>";
 	$AgencyUserId = str_replace('.doap.com','',$_SERVER['SERVER_NAME']);
-	echo "<h1><a class=cleanlinks href=https://www.doap.com/agencies.php>".$_SERVER['SERVER_NAME']."</a></h1>";
-	//echo "<p>AgencyUserID: ".$AgencyUserId."</p>";
+	echo "<h1><a title=\"Click to logout.\" class=\"marvel cleanlinks bigger\" href=https://www.doap.com/agencies.php>".$_SERVER['SERVER_NAME']."</a></h1>";
 	$mysqli = new mysqli($dbh, $dbu, $dbp, $dbname);
 	$agenciesQuery = "select * from motd where appType = 'agency' and featured = 1 order by AgencyUserId asc";
-	#fetch and list agency count and agency names.
 	$seq = 0;
 	
-	#run selected query on db
-	if ($_GET['runon'] != '')  { echo "<p>Running query on ".$_GET['runon']."</p>"; }
+	if ($_GET['runon'] != '')  { echo "<p class=\"marvel bigger\">Running query on ".$_GET['runon']."</p>"; }
 
 	if ($queryResults = $mysqli->query($agenciesQuery)) {
 		$seq = $seq + 1;
-		echo "<h2>".mysqli_num_rows($queryResults)." active agencies</h2>";
-		echo "<ol>";
+		echo "<h2 class=\"marvel \"bigger\">".mysqli_num_rows($queryResults)." active agencies</h2>";
+		echo "<ol class=\"marvel bigger\">";
 			while($row = mysqli_fetch_array($queryResults)) {
-				//echo $row['AgencyUserId']."\n";
 				$AgencyDb['seq'] = $row['AgencyUserId'].".doap.com"; 
 				echo "<li>";
-				//echo "<a class=cleanlinks href=https://".$row['AgencyUserId'].".doap.com/agencies.php>https://".$row['AgencyUserId'].".doap.com</a>";
 				echo $AgencyDb['seq']." ";
 				$_GET['runon'] = "https://www.doap.com/agencies.php?runon=".$row['AgencyUserId'].".doap.com";
-				echo "[<a class=\"cleanlinks execlink\" href=".$_GET['runon'].">Exec</a>]";
+				echo "[<a class=\"marvel cleanlinks execlink bigger\" href=".$_GET['runon'].">Exec</a>]";
 				echo "</li>";
 			}
 		echo "</ol>";
 	}
 } else {
-	echo "<form method=POST>";
-		echo "Login "; 
-		echo "<input type=text name=pass>";
-		echo "<input type=submit name=Go>";
+	echo "<form class=\"marvel theform bigger\" method=POST>";
+		//echo "Login "; 
+		echo "<input class=\"formelements bigger\" type=password name=pass>";
+		echo "<input class=\"formelementsbutton bigger\" type=submit name=Go>";
 	echo "</form>";
 exit;
 }

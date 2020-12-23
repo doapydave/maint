@@ -1,5 +1,32 @@
 <style>
-        .cleanlinks { text-decoration:none; }
-        .authenticated { text-align:right;float:right;}
-        .execlink { color:#006000;}
-</style>
+@font-face {
+    font-family:"Marvel";
+    src: url("/Marvel-regular.ttf") /* TTF file for CSS3 browsers */
+}
+.bigger { 
+font-size:1.1em;
+}
+.marvel { font-family:Marvel;}
+.cleanlinks { text-decoration:none; }
+.authenticated { text-align:right;float:right;font-size:2em;}
+.execlink { color:#006000;}
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+input[type=text] {
+  // input elements with type="text" attribute
+}
+input[type=password] {
+  // input elements with type="password" attribute
+}
+.theform { width:100%;text-align:center;}
+.formelements {
+ width:200px;
+  padding:20px;
+}
+.formelementsbutton {
+ width:80px;
+  padding-top:20px;
+  padding-bottom:20px;
+}
+  </style>
