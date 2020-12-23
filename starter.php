@@ -1,7 +1,10 @@
 <?php
 #fetch mysql pass
 include('../inc/dbp.php');
-#check dbp is good
+
+#check dbu and dbp are good
+echo "DBU: ".$dbu."
+";
 echo "DBP: ".$dbp."
 
 ";
