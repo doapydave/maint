@@ -3,12 +3,13 @@
     font-family:"Marvel";
     src: url("/Marvel-regular.ttf") /* TTF file for CSS3 browsers */
 }
-.bigger { 
-font-size:1.1em;
-}
+.bigger { font-size:1.1em; }
+.evenbigger { font-size:1.3em;font-weight:bold;background-color:yellow;}
+.padit { padding-left:10px;padding-right:10px;padding-bottom:2px; }
 .marvel { font-family:Marvel;}
 .cleanlinks { text-decoration:none; }
 .authenticated { text-align:right;float:right;font-size:2em;}
+.centerit { width:100%;text-align:center;}
 .execlink { color:#006000;}
 *, *:before, *:after {
   box-sizing: border-box;

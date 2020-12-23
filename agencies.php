@@ -29,11 +29,11 @@ if (isset($_POST['pass']) && $_POST['pass'] == $dbp OR isset($_SESSION['dbp'])) 
 	$agenciesQuery = "select * from motd where appType = 'agency' and featured = 1 order by AgencyUserId asc";
 	$seq = 0;
 	
-	if ($_GET['runon'] != '')  { echo "<p class=\"marvel bigger\">Running query on ".$_GET['runon']."</p>"; }
+	if ($_GET['runon'] != '')  { echo "<div class=\"marvel bigger centerit\">Running query on <br><span class=\"padit evenbigger\">".$_GET['runon']."</span></div>"; }
 
 	if ($queryResults = $mysqli->query($agenciesQuery)) {
 		$seq = $seq + 1;
-		echo "<h2 class=\"marvel \"bigger\">".mysqli_num_rows($queryResults)." active agencies</h2>";
+		echo "<h2 class=\"marvel bigger\">".mysqli_num_rows($queryResults)." active agencies</h2>";
 		echo "<ol class=\"marvel bigger\">";
 			while($row = mysqli_fetch_array($queryResults)) {
 				$AgencyDb['seq'] = $row['AgencyUserId'].".doap.com"; 
