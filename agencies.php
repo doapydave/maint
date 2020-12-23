@@ -12,25 +12,39 @@ if (isset($_GET['runon'])) {
 	$_SESSION['dbp'] = $dbp;
 }
 ?>
+
 <html>
+
 <head>
+<?php include('scripts/scripts.js'); ?>
 </head>
+
+<?php include('css/style.css'); ?>
 <?php include('css/style.css'); ?>
 <body class=mainbox>
 <div class=mainbox>
 <?php
 
 if (isset($_SESSION['dbp']) && $_SESSION['dbp'] == $dbp OR ($_POST['pass'] == $dbp)) {
-	echo "<div class=\"authenticated bigger\"><a title=Logout class=\"marvel cleanlinks bigger\" href=?logout=yes>Authenticated</a></div>";
+	echo "<div class=\"authenticated bigger\"><a title=Logout class=\"marvel cleanlinks bigger\" href=?logout=yes>Logout</a></div>";
 }
 if (isset($_POST['pass']) && $_POST['pass'] == $dbp OR isset($_SESSION['dbp'])) {
 	$AgencyUserId = str_replace('.doap.com','',$_SERVER['SERVER_NAME']);
-	echo "<h1><a title=\"Click to logout.\" class=\"marvel cleanlinks bigger\" href=https://www.doap.com/agencies.php>".$_SERVER['SERVER_NAME']."</a></h1>";
+	echo "<h1 class=Marvel><a title=\"Click to logout.\" class=\"marvel cleanlinks bigger\" href=https://www.doap.com/agencies.php>".$_SERVER['SERVER_NAME']."</a></h1>";
 	$mysqli = new mysqli($dbh, $dbu, $dbp, $dbname);
 	$agenciesQuery = "select * from motd where appType = 'agency' and featured = 1 order by AgencyUserId asc";
 	$seq = 0;
 	
-	if ($_GET['runon'] != '')  { echo "<div class=\"marvel bigger centerit\">Running query on <br><span class=\"padit evenbigger\">".$_GET['runon']."</span></div>"; }
+	if ($_SESSION['thequery'] == '')  { 
+		echo "<div class=\"marvel bigger centerit toppad\">Select a query from this list</div>"; 
+	} else { 
+		echo "<div class=\"marvel bigger centerit toppad\">Query selected!</div>"; 
+
+		$thequery = "select * from motd";
+	}
+	if ($_GET['runon'] != '')  { echo "<div class=\"marvel bigger centerit\">Running query on <br><span class=\"padit evenbigger\">".$_GET['runon']."</span></div>"; } else { 
+	echo "need a query entry form";	
+	}
 
 	if ($queryResults = $mysqli->query($agenciesQuery)) {
 		$seq = $seq + 1;
@@ -47,7 +61,8 @@ if (isset($_POST['pass']) && $_POST['pass'] == $dbp OR isset($_SESSION['dbp'])) 
 		echo "</ol>";
 	}
 } else {
-	echo "<form class=\"marvel theform bigger\" method=POST>";
+	echo "<h1 class=Marvel> A Doap DB Updater</h1>";
+	echo "<form class=\"marvel theform bigger alignright\" method=POST>";
 		//echo "Login "; 
 		echo "<input class=\"formelements bigger\" type=password name=pass>";
 		echo "<input class=\"formelementsbutton bigger\" type=submit name=Go>";

@@ -3,6 +3,13 @@
     font-family:"Marvel";
     src: url("/Marvel-regular.ttf") /* TTF file for CSS3 browsers */
 }
+li:nth-child(odd){
+  background-color: #ccc;
+}
+li:nth-child(even){
+  background-color: #fff;
+}
+.toppad { padding-bottom:20px;}
 li { font-size:2em;padding:5px;}
 .listwidth {width:500px;}
 .even {background-color:#fff;}
