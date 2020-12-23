@@ -15,8 +15,9 @@ if (isset($_GET['runon'])) {
 <html>
 <head>
 </head>
-<body>
 <?php include('css/style.css'); ?>
+<body class=mainbox>
+<div class=mainbox>
 <?php
 
 if (isset($_SESSION['dbp']) && $_SESSION['dbp'] == $dbp OR ($_POST['pass'] == $dbp)) {
@@ -34,13 +35,13 @@ if (isset($_POST['pass']) && $_POST['pass'] == $dbp OR isset($_SESSION['dbp'])) 
 	if ($queryResults = $mysqli->query($agenciesQuery)) {
 		$seq = $seq + 1;
 		echo "<h2 class=\"marvel bigger\">".mysqli_num_rows($queryResults)." active agencies</h2>";
-		echo "<ol class=\"marvel bigger\">";
+		echo "<ol class=\"marvel bigger listwidth\">";
 			while($row = mysqli_fetch_array($queryResults)) {
 				$AgencyDb['seq'] = $row['AgencyUserId'].".doap.com"; 
 				echo "<li>";
-				echo $AgencyDb['seq']." ";
+				echo "<span class=listitem>".$AgencyDb['seq']."</span> ";
 				$_GET['runon'] = "https://www.doap.com/agencies.php?runon=".$row['AgencyUserId'].".doap.com";
-				echo "[<a class=\"marvel cleanlinks execlink bigger\" href=".$_GET['runon'].">Exec</a>]";
+				echo "<span class=listitembutton>[<a class=\"marvel cleanlinks execlink bigger\" href=".$_GET['runon'].">Exec</a>]</span>";
 				echo "</li>";
 			}
 		echo "</ol>";
@@ -54,5 +55,6 @@ if (isset($_POST['pass']) && $_POST['pass'] == $dbp OR isset($_SESSION['dbp'])) 
 exit;
 }
 ?>
+</div>
 </body>
 </html>

@@ -3,6 +3,12 @@
     font-family:"Marvel";
     src: url("/Marvel-regular.ttf") /* TTF file for CSS3 browsers */
 }
+li { font-size:2em;padding:5px;}
+.listwidth {width:500px;}
+.even {background-color:#fff;}
+.odd {background-color:#ccc;}
+.listitem {position:relative;float:right;margin-left:100px; }
+.mainbox { background-color:#eee;width:600px;padding:20px;}
 .bigger { font-size:1.1em; }
 .evenbigger { font-size:1.3em;font-weight:bold;background-color:yellow;}
 .padit { padding-left:10px;padding-right:10px;padding-bottom:2px; }
