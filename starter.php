@@ -3,10 +3,13 @@
 include('../inc/dbp.php');
 
 #check dbu and dbp are good
-echo "DBU: ".$dbu."
+echo "
+Code located at: /mnt/efs/doap/maint
 ";
-echo "DBP: ".$dbp."
 
+//echo "DBU: ".$dbu." ";
+//echo "DBP: ".$dbp." ";
+echo "dbu and dbp set
 ";
 #connect to mysql
 #list agencies

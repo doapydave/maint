@@ -2,8 +2,8 @@
 #fetch mysql pass
 include('../inc/dbp.php');
 #check dbp is good
-echo "DBP: ".$dbp."
-
+//echo "DBP: ".$dbp." ";
+echo "dbp set.
 ";
 #connect to mysql
 #list agencies
