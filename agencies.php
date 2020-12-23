@@ -1,10 +1,3 @@
-<style> 
-	.cleanlinks { text-decoration:none; } 
-	.authenticated { text-align:right;float:right;} 
-	.execlink { color:#006000;} 
-</style>
-
-<html>
 <?php
 session_start();
 include('../inc/dbp.php');
@@ -18,7 +11,13 @@ if (isset($_GET['logout'])) {
 if (isset($_GET['runon'])) { 
 	$_SESSION['dbp'] = $dbp;
 }
-
+?>
+<html>
+<head>
+</head>
+<body>
+<?php include('css/style.css'); ?>
+<?php
 
 if (isset($_SESSION['dbp']) && $_SESSION['dbp'] == $dbp OR ($_POST['pass'] == $dbp)) {
 	echo "<div class=authenticated><a title=Logout class=cleanlinks href=?logout=yes>Authenticated</a></div>";
@@ -61,4 +60,5 @@ if (isset($_POST['pass']) && $_POST['pass'] == $dbp OR isset($_SESSION['dbp'])) 
 exit;
 }
 ?>
+</body>
 </html>
