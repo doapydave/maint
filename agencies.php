@@ -39,8 +39,8 @@ if (isset($_POST['pass']) && $_POST['pass'] == $dbp OR isset($_SESSION['dbp'])) 
 			<form class=centerit name=setquery method=get>
 				<select name=thequery>
 					<option value=".urlencode('select * from motd where featured = 1').">"."select * from motd where featured = 1"."</option>
-					<option>"."select * from motd where featured != 1"."</option>
-					<option>"."select * from motd"."</option>
+					<option value=".urlencode('select * from motd where featured = 1').">"."select * from motd where featured != 1"."</option>
+					<option value=".urlencode('select * from motd where featured = 1').">"."select * from motd"."</option>
 				</select>
 				<input type=hidden name=runon value=".$_GET['runon'].">
 				<input type=submit value=Go>
