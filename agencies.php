@@ -33,7 +33,7 @@ if (isset($_POST['pass']) && $_POST['pass'] == $dbp OR isset($_SESSION['dbp'])) 
 	$seq = 0;
 	
 	if ($_SESSION['thequery'] == '')  { 
-		echo "<div class=\"marvel bigger centerit toppad\">Select a query from this list</div>"; 
+		echo "<div class=\"marvel bigger centerit toppad\">Run a query on any Doap Agency DB.</div>"; 
 	
 		echo "	
 			<form class=centerit name=setquery method=get>
@@ -54,7 +54,7 @@ if (isset($_POST['pass']) && $_POST['pass'] == $dbp OR isset($_SESSION['dbp'])) 
 	}
 		if (isset($_GET['thequery'])) { echo "<div class=\"running marvel bigger centerit toppad\">".urldecode($_GET['thequery'])."</div>";  }
 	if ($_GET['runon'] != '')  { echo "<div class=\"marvel bigger centerit\">Targeting<br><span class=\"padit evenbigger\">".$_GET['runon']."</span></div>"; } else { 
-	echo "<div class=centerit>Set an agency to update.</div>";	
+	echo "<div class=centerit>Choose a Doap Agency database to update.</div>";	
 	}
 
 	if ($queryResults = $mysqli->query($agenciesQuery)) {
