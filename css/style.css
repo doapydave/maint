@@ -3,6 +3,7 @@
     font-family:"Marvel";
     src: url("/Marvel-regular.ttf") /* TTF file for CSS3 browsers */
 }
+.running { background-color:#006000;color:#ffffff;padding-top:15px;}
 li:nth-child(odd){
   background-color: #ccc;
 }
@@ -21,7 +22,7 @@ li { font-size:2em;padding:5px;}
 .padit { padding-left:10px;padding-right:10px;padding-bottom:2px; }
 .marvel { font-family:Marvel;}
 .cleanlinks { text-decoration:none; }
-.authenticated { text-align:right;float:right;font-size:2em;}
+.authenticated { text-align:right;float:right;font-size:1.5em;}
 .centerit { width:100%;text-align:center;}
 .execlink { color:#006000;}
 *, *:before, *:after {
@@ -43,4 +44,5 @@ input[type=password] {
   padding-top:20px;
   padding-bottom:20px;
 }
+.listitembutton {font-size:.7em;}
   </style>

@@ -14,15 +14,12 @@ if (isset($_GET['runon'])) {
 ?>
 
 <html>
-
 <head>
-<?php include('scripts/scripts.js'); ?>
+	<?php include('scripts/scripts.js'); ?>
+	<?php include('css/style.css'); ?>
 </head>
 
-<?php include('css/style.css'); ?>
-<?php include('css/style.css'); ?>
 <body class=mainbox>
-<div class=mainbox>
 <?php
 
 if (isset($_SESSION['dbp']) && $_SESSION['dbp'] == $dbp OR ($_POST['pass'] == $dbp)) {
@@ -37,13 +34,27 @@ if (isset($_POST['pass']) && $_POST['pass'] == $dbp OR isset($_SESSION['dbp'])) 
 	
 	if ($_SESSION['thequery'] == '')  { 
 		echo "<div class=\"marvel bigger centerit toppad\">Select a query from this list</div>"; 
+	
+		echo "	
+			<form class=centerit name=setquery method=get>
+				<select name=thequery>
+					<option value=".urlencode('select * from motd where featured = 1').">"."select * from motd where featured = 1"."</option>
+					<option>"."select * from motd where featured != 1"."</option>
+					<option>"."select * from motd"."</option>
+				</select>
+				<input type=hidden name=runon value=".$_GET['runon'].">
+				<input type=submit value=Go>
+			</form>
+		";
+
 	} else { 
 		echo "<div class=\"marvel bigger centerit toppad\">Query selected!</div>"; 
 
 		$thequery = "select * from motd";
 	}
-	if ($_GET['runon'] != '')  { echo "<div class=\"marvel bigger centerit\">Running query on <br><span class=\"padit evenbigger\">".$_GET['runon']."</span></div>"; } else { 
-	echo "need a query entry form";	
+		if (isset($_GET['thequery'])) { echo "<div class=\"running marvel bigger centerit toppad\">".urldecode($_GET['thequery'])."</div>";  }
+	if ($_GET['runon'] != '')  { echo "<div class=\"marvel bigger centerit\">Targeting<br><span class=\"padit evenbigger\">".$_GET['runon']."</span></div>"; } else { 
+	echo "<div class=centerit>Set an agency to update.</div>";	
 	}
 
 	if ($queryResults = $mysqli->query($agenciesQuery)) {
@@ -55,21 +66,24 @@ if (isset($_POST['pass']) && $_POST['pass'] == $dbp OR isset($_SESSION['dbp'])) 
 				echo "<li>";
 				echo "<span class=listitem>".$AgencyDb['seq']."</span> ";
 				$_GET['runon'] = "https://www.doap.com/agencies.php?runon=".$row['AgencyUserId'].".doap.com";
-				echo "<span class=listitembutton>[<a class=\"marvel cleanlinks execlink bigger\" href=".$_GET['runon'].">Exec</a>]</span>";
+				echo "<span class=listitembutton>[<a class=\"marvel cleanlinks execlink bigger\" href=".$_GET['runon'].">Target</a>]</span>";
 				echo "</li>";
 			}
 		echo "</ol>";
 	}
 } else {
-	echo "<h1 class=Marvel> A Doap DB Updater</h1>";
+	echo "<div class=listwidth>";
+	echo "<h1 class=Marvel>Doap MultiDB Updater</h1>";
+	echo "<p>Login to the MultiDB query execution tool here.</p>";
 	echo "<form class=\"marvel theform bigger alignright\" method=POST>";
 		//echo "Login "; 
-		echo "<input class=\"formelements bigger\" type=password name=pass>";
+		echo "<input title=\"Login to the multidb admin tool.\" placeholder=\"user\" class=\"formelements bigger\" type=text name=pass>";
+		echo "<input placeholder=\"Pass\" class=\"formelements bigger\" type=password name=pass>";
 		echo "<input class=\"formelementsbutton bigger\" type=submit name=Go>";
 	echo "</form>";
+	echo "</div>";
 exit;
 }
 ?>
-</div>
 </body>
 </html>
